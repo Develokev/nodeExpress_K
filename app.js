@@ -1,53 +1,52 @@
-//Configura el servidor
+//*Configura el servidor -- IMPORTACIONES
 const express = require('express');
 const app = express(); //sirve de psuedo instanciador del express.
+const cors = require('cors');
 
-const port =process.env.PORT || 3000; //las url se guardan como variables de entorno, en el servidor.
+const {connection} = require('./helpers/dbConnect')
 
-//FUNCIONES +++++++++++++++++++++++++++++++++++++++++++++++
-//establece la carpeta estática
+require('dotenv').config();  //requiriendo el .ENV
+app.use(cors());
+
+const port =process.env.PORT; //las url se guardan como variables de entorno, en el servidor.
+
+
+//*FUNCIONES +++++++++++++++++++++++++++++++++++++++++++++++
+//*establece la carpeta estática
 app.use(express.static('public'));
  //"__dirname" nos da la ruta absoluta hasta el punto en donde estemos.
 
-//establecer template engine
+
+//*establecer template engine
 app.set('view engine', 'ejs')
-app.set('views', __dirname + '/views');
+app.set('views', __dirname + '/views'); //actua como un SET ATTRIBUTE, recibe como primer argumento el atributo "views" y luego el nombre de la carpeta contenedora que elijamos. Por Convencionalismo también se llamará "views".
 
-//renderizar
-app.get('/',(req,res)=>{     //el '/' indica el INDEX. //le pedimos al servidor la respuesta, se hace la solicitud a través del INDEX
-    res.render('index', {
-        titleHead: 'Gaming Universe',
-        subparagraph : 'Playing is sharing',
-        title: 'INDEX',
-        p: 'Index paragrpah',
-        footer: 'This is the footer',
-}); 
-});
+//* Parse application/x-www-form-urlencoded traduciendo a POSTMAN
+app.use(express.urlencoded({ extended: false }));
 
-app.get('/servicios', (req,res) => {
-    res.render('servicios', {
-        titleHead: 'Gaming Universe',
-        subparagraph : 'Playing is sharing',
-        footer: 'This is the footer',
-        serviceList: 'This is the list of services we provide',
-        title: 'SERVICE'
+//* Parse application/json
+app.use(express.json());
+
+//*RUTA enlazada a la subruta del otro archivo que creamos JS.
+app.use('/', require('./routers/routerFront'));
+
+//*BACKEND MiddleWare 
+app.use('/api/v1', require('./routers/routerAPI'));
+
+//*404 ERROR
+app.use((req,res,next) => {
+    res.status(404).render('404', {
+        error: '404',
+        msg: 'Wrong way, kid. Turn back.'
     })
-});
-
-app.get('/productos', (req,res) => {
-    res.render('productos', {
-        titleHead: 'Gaming Universe',
-        subparagraph : 'Playing is sharing',
-        title: 'Best video-games consoles within the 90s',
-        footer: 'This is the footer'
-});
-});
-
-app.get('/contactos', (req,res) => {
-
 })
 
-//poner al servidor a la escucha.
+//Conexión  //una vez establecida la conección con el SERVER, requerimos la conección en APP.JS y la llamamos aquí.
+connection();
+
+
+//*poner al servidor a la escucha.
 app.listen(port, () => {
     console.log(`Servidor a la escuha del puerto ${port}`)
 });
+

@@ -1,11 +1,172 @@
-main {
-    background-color: rgb(57, 57, 182);
-}
-
-header {
-    background-color: green;
+/** STYLE FOR ALL ++++++++++++++++++++++++++++ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 footer {
     background-color: rgb(255, 0, 221);
 }
+
+.centerText {
+    text-align: center;
+}
+
+.headerDiv {
+    background-color: black;
+    box-shadow: 0px 5px 12px 5px rgba(0,255,255,0.7);
+
+    width: 99%;
+    margin: 0 auto;
+}
+
+.titleHead {
+    color: rgb(53, 190, 240);
+
+    font-family: sans-serif;
+    font-size: 50px;
+
+    padding: 17px;
+}
+
+.corporate {
+    color: rgb(255, 254, 254);
+
+    padding: 5px;
+    margin: 0;
+
+    font-family: monospace;
+    font-size: 15px;
+}
+
+body {
+    background-color: rgb(23, 10, 31);
+}
+
+#imgLogo {
+    display: grid;
+    margin: 0 auto;
+
+    max-width: 85%;
+
+    padding: 8px;
+}
+
+.gridContainer-mob {
+    display: grid;
+    grid-template-columns: 1fr;
+
+}
+
+/**GENERALS ++++++++++++++++++++++++++++++++++ */
+
+/*Navigation Bar 1 */
+
+.navMenu {
+    margin: 5px;
+}
+.navMenu a {
+    list-style: none;
+    text-decoration: none;
+    text-align: center;
+
+    font-family: sans-serif;
+    font-size: 15px;
+    color: white;
+
+    transition: 1s,
+}
+
+.navMenu a:hover{
+    color: white;
+    /* background-color: rgb(6, 6, 7); */
+
+    border-radius: 30px;
+    box-shadow: 0px 5px 12px 5px rgba(0,255,255,0.7);
+}
+
+
+/**MEDIA QUERY +++++++++++++++++++ */
+/* ===================================
+                     media query 768px
+======================================*/
+@media screen and (min-width:768px) {
+    
+    .gridContainer-mob {
+        display: grid;
+        grid-template-columns: 1fr;
+        
+    }
+
+    #imgLogo {
+        display: grid;
+        margin: 0 auto;
+    
+        max-width: 30%;
+    
+        padding: 8px;
+    }
+
+    .corporate {
+        font-size: 15px;
+    }
+
+    .navMenu a {
+        font-size: 25px;
+    }
+    
+}
+/*768px end.*/
+
+/* ===================================
+                     media query 992px
+======================================*/
+@media screen and (min-width:992px) {
+    .gridContainer-mob {
+        display: grid;
+        grid-template-columns: 1fr;
+        
+    }
+
+    #imgLogo {
+        display: grid;
+        margin: 0 auto;
+    
+        max-width: 30%;
+    
+        padding: 8px;
+    }
+
+    .navMenu a {
+        font-size: 25px;
+    }
+
+}
+/*992px end.*/
+
+/* ===================================
+                    media query 1200px
+======================================*/
+@media screen and (min-width:1200px) {
+    .gridContainer-mob {
+        display: grid;
+        grid-template-columns: 1fr;
+        
+    }
+
+    #imgLogo {
+        display: grid;
+        margin: 0 auto;
+    
+        max-width: 30%;
+    
+        padding: 8px;
+    }
+
+    .navMenu a {
+        font-size: 25px;
+    }
+
+}
+/*1200px end.*/
