@@ -42,7 +42,7 @@ try {
 const createService =async (req,res) => {
 try {
     const NewService = new Service(req.body);
-
+    console.log(NewService)
     const data = await NewService.save();
 
     return res.status(201).json({

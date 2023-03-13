@@ -10,6 +10,9 @@ app.use(cors());
 
 const port =process.env.PORT; //las url se guardan como variables de entorno, en el servidor.
 
+//Conexión  //una vez establecida la conección con el SERVER, requerimos la conección en APP.JS y la llamamos aquí.
+connection();
+
 
 //*FUNCIONES +++++++++++++++++++++++++++++++++++++++++++++++
 //*establece la carpeta estática
@@ -40,9 +43,6 @@ app.use((req,res,next) => {
         msg: 'Wrong way, kid. Turn back.'
     })
 })
-
-//Conexión  //una vez establecida la conección con el SERVER, requerimos la conección en APP.JS y la llamamos aquí.
-connection();
 
 
 //*poner al servidor a la escucha.
