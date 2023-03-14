@@ -19,7 +19,7 @@ const getServices =async (req,res) => {
         })
     }
 }
-//GET Single product
+//GET Single service
 const getService =async (req,res) => {
 try {
     const id = req.params.id;
@@ -38,12 +38,12 @@ try {
     })
 }
 }
-//Create Single Product
+//Create Single Service
 const createService =async (req,res) => {
 try {
-    const NewService = new Service(req.body);
-    console.log(NewService)
-    const data = await NewService.save();
+    const newService = new Service(req.body);
+    // console.log(NewService)
+    const data = await newService.save();
 
     return res.status(201).json({
         ok: true,
@@ -59,14 +59,14 @@ try {
 }
 }
 
-//Update Single Product
+//Update Single Service
 const updateService =async (req,res) => {
     try{
         const id = req.params.id;
         const service = req.body.service;
         const description = req.body.description;
 
-        const data = await Service.findByIdAndUpdate({_id:id},{service:service},{description:description});
+        const data = await Service.findByIdAndUpdate({_id:id},{$set:{service,description}},{new:true});
 
         return res.status(200).json({
             ok: true,
@@ -82,7 +82,7 @@ const updateService =async (req,res) => {
 }
 }
 
-//Delete Single Product
+//Delete Single Service
 const deleteService =async (req,res) => {
     try {
         const id = req.params.id;
@@ -101,7 +101,7 @@ const deleteService =async (req,res) => {
     }
 }
 
-//!EXPORT
+//!EXPORTing
 module.exports = {
     getServices,
     getService,

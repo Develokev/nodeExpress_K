@@ -34,7 +34,8 @@ app.use(express.json());
 app.use('/', require('./routers/routerFront'));
 
 //*BACKEND MiddleWare 
-app.use('/api/v1', require('./routers/routerAPI'));
+app.use('/api/v1/services', require('./routers/routerAPI')); //!conexión con API SERVICIOS
+app.use('/api/v1/users', require('./routers/routerAPIusers')); //!conexión con API USERS
 
 //*404 ERROR
 app.use((req,res,next) => {

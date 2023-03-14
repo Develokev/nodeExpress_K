@@ -16,4 +16,4 @@ const ServiceSchema = new Schema ({
 })
 
 module.exports = model('Service', ServiceSchema)  //1er argumento: Establecemos el nombre del modelo.
-                                                    // 2do argumento: Llamamos al Schema que serían las reglas instanciadas anteriormente.
+                                                  //2do argumento: Llamamos al Schema que serían las reglas instanciadas anteriormente.
