@@ -82,15 +82,13 @@ const loginUser = async (req,res) => {
 
     const emailOK = await User.findOne({email});
     console.log(emailOK);
-    
         try {
             
-            // console.log(email);
-            const passCheck = await bcrypt.compare(password, emailOK.password);
-            // console.log(passCheck);
-            // const salt = bcrypt.genSaltSync(10);
+            
+            const passCheck = bcrypt.compareSync(password, emailOK.password);
+            console.log(passCheck);
 
-            if(!emailOK) {
+            if(!emailOK || passCheck == false) {
                 return res.status(400).json({
                     ok:false,
                     msg: 'User-Password incorrect'
