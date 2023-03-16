@@ -2,14 +2,14 @@
 
 
 <section>
-    <form method="post" action="/admin/services/update-service/:id">
+    <form method="post" action="/admin/services/update-service/<%= serviceFound._id %>">
         <div>
-            <input type="text" name="service" id="service" placeholder="Service name..">
+            <input type="text" name="service" id="service" value="<%= serviceFound.service %>">
         </div>
         <div>
-            <textarea name="description" id="description" cols="30" rows="10" placeholder="Enter a service description.."></textarea>
+            <textarea name="description" id="description" cols="30" rows="10" placeholder="Enter a service description.."><%= serviceFound.description %></textarea>
         </div>
-        <input type="submit" value="Update Service">
+        <input class="anchorBtn" type="submit" value="Update Service">
     </form>
 </section>
 

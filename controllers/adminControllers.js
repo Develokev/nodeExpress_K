@@ -41,12 +41,39 @@ const createServiceAD =async (req,res) => {
 }
 
 //mostrar form de UPDATE
-const formularioUpdate = (req,res) =>{
+const formUpdate = (req,res) =>{
     res.render("./adminViews/updateServiceAD.ejs")
+}
+
+//update service
+const updateServiceAD =async (req,res) =>{
+    
+    try {
+
+        const id = req.params.id
+        const urlUpdate = "/services/"+`${id}`
+
+        const {service,description} = req.body
+        const body={
+            service,
+            description
+        }
+        
+        const serviceFound = await petition(urlUpdate, 'put', body)
+
+        console.log(serviceFound)
+
+        return serviceFound
+    } catch (error) {
+        console.log('FAILED updating Service')
+    }
+
 }
 
 module.exports={
     showServicesAD,
     createServiceAD,
-    formulario
+    formulario,
+    formUpdate,
+    updateServiceAD
 }
