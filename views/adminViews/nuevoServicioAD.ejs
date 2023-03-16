@@ -3,28 +3,33 @@
 <body>
 
     <main>
-        <ul>
-            <li>Console maintenance</li>
-            <li>User support</li>
-            <li>Bug fixing</li>
-            <li>Chips</li>
-            <li>Purchase advisory</li>
-        </ul>
+        <p class="admWebTitle">SERVICES ADMINISTRATOR</p>
+        <p class="admWebTitle">AUTHORIZED ONLY</p>
 
-        <table>
+        <div>
+            <a class="anchorBtn" href="/admin/services/form">Create new service</a>
+        </div>
+        <table class="centerText">
             <thead>
                 <tr>
-                    <th>Servicio</th>
-                    <th>Descripcion</th>
+                    <th>Services</th>
+                    <th>Description</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    
-                </tr>
-                <tr>
-                    
-                </tr>
+                <% if (services.length > 0) { %>
+                    <% services.forEach(item => { %>
+                        <tr>
+                            <td><%= item.service %></td>
+                            <td><%= item.description %></td>
+                            <td><a class="anchorBtn" href="/admin/services/update-service-form/:id">Update Service</a></td>
+                        </tr>
+                    <% }) %>
+                    <% } else { %>
+                     <tr>
+                        <td>No services to show, kiddo</td>
+                     </tr>
+                <% } %>
             </tbody>
         </table>
     </main>

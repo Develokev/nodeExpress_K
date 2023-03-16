@@ -2,13 +2,13 @@ const Service = require('../models/serviceModel');
 const {petition} = require('../helpers/fetch')
 
 //Show Services - en donde muestra los servicios, y la posibilidad de editar
-const showServicesAD =async (req,res) => {
+const showServicesAD =async (req,res) => {    
+     try {
     
-    
-    try {
-        const servicios = await Service.find();
-        res.render('./services/nuevoServicioAD', {
-            servicios:services
+    const {data} = await petition('services','get');
+
+    res.render('./adminViews/nuevoServicioAD.ejs', {
+        services:data
     })
 
     }catch (error) {
@@ -25,19 +25,24 @@ const formulario = (req,res) =>{
 const createServiceAD =async (req,res) => {
 
     try {
-        await petition('/services', 'post', req.body)
         const {service,description} = req.body
         const body={
             service,
             description
         }
-        
+        console.log(body)
+        await petition('services', 'post', body)
         
     } catch (error) {
         console.log(error)
     }
     
     res.redirect('/admin/services/show-services')
+}
+
+//mostrar form de UPDATE
+const formularioUpdate = (req,res) =>{
+    res.render("./adminViews/updateServiceAD.ejs")
 }
 
 module.exports={

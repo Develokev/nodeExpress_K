@@ -8,35 +8,37 @@ const petition = async(url,method,body={}) => {
     try {
         if(method=='post' || method=='put'){
             //const {servicio,descripcion}=body
-           const data={...body};
-             options={
-                method:method,
-                body:JSON.stringify(data),
-                headers:{
-                    'Content-type':'application/json'
+            console.log('Fetching --> Post or Put methods')
+            const data={...body};
+                options={
+                    method:method,
+                    body:JSON.stringify(data),
+                    headers:{
+                        'Content-type':'application/json'
+                    }
                 }
-            }
         }
-        if(method=='delete'){
-            options={
-                method: method, //mirar si hay que mandar mas cosas en el delete
-            }
-        }
-        if(method=='get'){
-            // options={
-            //     method: method,
-            // }
-        }
-          console.log(`${urlBase}/${url}`)
-          console.log(method)
-         let respuesta= await fetch(`${urlBase}/${url}`,options);
+        // if(method=='delete'){
+        //     console.log('Fetching --> DELETE method')
+        //     options={
+        //         method: method, //mirar si hay que mandar mas cosas en el delete
+        //     }
+        // }
+        // if(method=='get'){
+        //     console.log('Fetching --> GET method')
+        //     options={
+        //         method: method,
+        //     }
+        // }
+        
+          let respuesta= await fetch(`${urlBase}/${url}`,options);
 
           if(respuesta.ok){
-            console.log(respuesta.ok)
-            respuesta=respuesta.json()
-          return respuesta
+            console.log('Fetch done correctly')
+            resp=respuesta.json()
+          return resp
           }else{
-            throw ('error en el fetch')
+            throw ('FAILED to fetch from server')
           }
           
     } catch (error) {

@@ -19,9 +19,10 @@ const getServices =async (req,res) => {
 
     const {data} = await petition('services','get');
 
-    console.log(data)
-
     res.render('servicios', {
+        titleHead: 'VERSUS',
+        slogan : 'Playing is caring',
+        
         services:data
     })
 };
