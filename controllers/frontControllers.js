@@ -1,9 +1,11 @@
 //TRAEMOS el SERVICE - FACILITIES -
 const Service = require('../models/serviceModel');
 const Facility = require('../models/facilitiesModel');
+const {petition} = require('../helpers/fetch');
 
 //FUNCIONES -- CONTROLADORES - Instrucciones
 const getIndex = (req,res)=>{
+    
     res.render('index', {       
         titleHead: 'VERSUS',
         slogan : 'Playing is caring',
@@ -14,23 +16,14 @@ const getIndex = (req,res)=>{
 };
 
 const getServices =async (req,res) => {
-    try {
-        const servicios = await Service.find();
-        res.render('servicios', {
-            titleHead: 'VERSUS',
-            slogan : 'Playing is caring',
 
-            title:'Service Area',
-            msg: 'Este es el mensaje de servicios',
-            
-            serviceList: 'This is the list of services we provide',
-            corporate: 'Manufacture, develop and sale of home-gaming entertainment products',
-            servicios
-        })
-        
-    } catch (error) {
-        console.log(error)
-    }
+    const {data} = await petition('services','get');
+
+    console.log(data)
+
+    res.render('servicios', {
+        services:data
+    })
 };
 
 const getFacilities =async (req,res) => {

@@ -13,12 +13,10 @@ const port =process.env.PORT; //las url se guardan como variables de entorno, en
 //Conexión  //una vez establecida la conección con el SERVER, requerimos la conección en APP.JS y la llamamos aquí.
 connection();
 
-
 //*FUNCIONES +++++++++++++++++++++++++++++++++++++++++++++++
 //*establece la carpeta estática
 app.use(express.static('public'));
  //"__dirname" nos da la ruta absoluta hasta el punto en donde estemos.
-
 
 //*establecer template engine
 app.set('view engine', 'ejs')
@@ -36,6 +34,7 @@ app.use('/', require('./routers/routerFront'));
 //*BACKEND MiddleWare 
 app.use('/api/v1/services', require('./routers/routerAPI')); //!conexión con API SERVICIOS
 app.use('/api/v1/users', require('./routers/routerAPIusers')); //!conexión con API USERS
+app.use('/admin', require('./routers/routerADMIN')) //!conexión con ADMIN area
 
 //*404 ERROR
 app.use((req,res,next) => {
@@ -45,9 +44,7 @@ app.use((req,res,next) => {
     })
 })
 
-
 //*poner al servidor a la escucha.
 app.listen(port, () => {
     console.log(`Servidor a la escuha del puerto ${port}`)
 });
-

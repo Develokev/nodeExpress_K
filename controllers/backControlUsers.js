@@ -81,9 +81,7 @@ const loginUser = async (req,res) => {
     const {id, user, email, password} =req.body;
 
     const emailOK = await User.findOne({email});
-    console.log(emailOK);
         try {
-            
             
             const passCheck = bcrypt.compareSync(password, emailOK.password);
             console.log(passCheck);
@@ -95,7 +93,7 @@ const loginUser = async (req,res) => {
                 })
                 
             }else {
-                const token = await generateToken(id, user);
+                const token = await generateToken(emailOK.id, emailOK.user);
                 return res.status(200).json({
                     ok:true,
                     msg: 'Successfully LOGED IN',
@@ -110,7 +108,7 @@ const loginUser = async (req,res) => {
         }
 }
 
-//RENEW USER
+//*RENEW USER
 const renewToken =async (req,res) => {
 
     const {uid, user} = req;
