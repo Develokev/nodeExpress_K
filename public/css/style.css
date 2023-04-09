@@ -64,14 +64,22 @@ p {
     color:whitesmoke;
 }
 
+.whiteLettersNeon {
+    font-family: sans-serif;
+    color:whitesmoke;
+    box-shadow: 0px 5px 12px 5px rgba(0,255,255,0.7);
+}
+
 /**GENERALS ++++++++++++++++++++++++++++++++++ */
 
 /*Navigation Bar 1 */
 
 .navMenu {
     display: inline;
-    margin: 5px;
+    align-content: space-around;
+    margin: 0 auto;
 }
+
 .navMenu a {
     list-style: none;
     text-decoration: none;
@@ -113,9 +121,75 @@ td {
 }
 
 li {
+    display: inline-block;
+    margin-left: 5px;
     color:whitesmoke;
     margin:2%;
 }
+
+/*LOGIN FORM +++++++++++++++++ */
+
+.adminForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    width: 400px;
+  }
+  
+  label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  input {
+    font-size: 16px;
+    padding: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+.generalBtn {
+    background-color: #6b3fa0;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 24px;
+    font-size: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.generalBtn:before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background-color: #00ff7f;
+        transform: rotate(45deg);
+        animation: neon 1.5s linear infinite;
+}
+
+.generalBtn:hover {
+    background-color: #7c49b5;
+  }
+  
+.generalBtn:hover:before {
+    animation: none;
+    opacity: 0.7;
+}
+
+/* ++++++++++++++ */
 
 /**ADMINISTRATOR STYLES ++++++++++ */
 .admWebTitle {
@@ -233,3 +307,20 @@ li {
 
 }
 /*1200px end.*/
+
+/* ===================================
+                            KEYFRAMES
+======================================*/
+@keyframes neon {
+    0% {
+      transform: rotate(45deg) translate(-50%, -50%) scale(0.1);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: rotate(45deg) translate(-50%, -50%) scale(1.2);
+      opacity: 0;
+    }
+  }

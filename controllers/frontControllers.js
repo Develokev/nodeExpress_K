@@ -59,6 +59,19 @@ const getContacts = (req,res) => {
 });
 };
 
+const showLoginForm = (req,res) => {
+
+    try {
+        
+        res.render('./login')
+
+    } catch (error) {
+        
+        console.log('FAILED rendering login form')
+
+    }
+}
+
 //*EXPORT ++++++++++++++++++++++++++++++
 
 module.exports={
@@ -66,5 +79,6 @@ module.exports={
     getContacts,
     getProducts,
     getServices,
-    getFacilities
+    getFacilities,
+    showLoginForm
 }

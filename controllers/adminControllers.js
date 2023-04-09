@@ -1,7 +1,7 @@
 const Service = require('../models/serviceModel');
 const {petition} = require('../helpers/fetch')
 
-//Show Services - en donde muestra los servicios, y la posibilidad de editar
+//*Show Services - INDEX ADMIN en donde muestra los servicios, y la posibilidad de editar
 const showServicesAD =async (req,res) => {    
      try {
     
@@ -15,13 +15,14 @@ const showServicesAD =async (req,res) => {
         console.log('FAILED showing services to edit')
 }}
 
-//mostrar form
+//*mostrar form
 const formulario = (req,res) =>{
-    res.render("./adminViews/mostrarServiciosAD.ejs")
 
+    res.render("./adminViews/mostrarServiciosAD.ejs")
+    
 }
 
-//Create Service
+//*Create Service
 const createServiceAD =async (req,res) => {
 
     try {
@@ -40,18 +41,36 @@ const createServiceAD =async (req,res) => {
     res.redirect('/admin/services/show-services')
 }
 
-//mostrar form de UPDATE
-const formUpdate = (req,res) =>{
+//*mostrar form de UPDATE
+const formUpdate =async (req,res) =>{
+    const id = req.params.id
+    console.log(req.params.id, 'admin controller')
+    //const urlUpdate = `services/update-service-form/${id}`
+    const urlUpdate = `services/update-service-form/640e042ff0734576756fda55`
+    
+
+    // const {service,description} = req.body
+    // const body={
+    //     service,
+    //     description
+    // }
+    
+    const serviceFound = await petition(urlUpdate, 'get')
+
+    console.log(serviceFound, 'serviceFound')
+
+
     res.render("./adminViews/updateServiceAD.ejs")
+    return serviceFound
 }
 
-//update service
+//!update service
 const updateServiceAD =async (req,res) =>{
     
     try {
-
         const id = req.params.id
-        const urlUpdate = "/services/"+`${id}`
+        console.log(id)
+        const urlUpdate = `/services/${id}`
 
         const {service,description} = req.body
         const body={

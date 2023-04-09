@@ -8,7 +8,7 @@ const {connection} = require('./helpers/dbConnect')
 require('dotenv').config();  //requiriendo el .ENV
 app.use(cors());
 
-const port =process.env.PORT; //las url se guardan como variables de entorno, en el servidor.
+const port =process.env.PORT || 3000; //las url se guardan como variables de entorno, en el servidor.
 
 //Conexión  //una vez establecida la conección con el SERVER, requerimos la conección en APP.JS y la llamamos aquí.
 connection();

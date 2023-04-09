@@ -2,15 +2,20 @@
 
 
 <section>
-    <form method="post" action="/admin/services/update-service/<%= serviceFound._id %>">
+    <% if (serviceFound!=undefined) { %>
+     <form method="post" action="/admin/services/update-service/<%=serviceFound._id%>">
         <div>
-            <input type="text" name="service" id="service" value="<%= serviceFound.service %>">
+            <input type="text" name="service" id="service" value="<%=serviceFound.service%>">
         </div>
         <div>
-            <textarea name="description" id="description" cols="30" rows="10" placeholder="Enter a service description.."><%= serviceFound.description %></textarea>
+            <textarea name="description" id="description" cols="30" rows="10" placeholder="Enter a service description.."><%=serviceFound.description%></textarea>
         </div>
         <input class="anchorBtn" type="submit" value="Update Service">
     </form>
+    <% } else { %>
+     <p>Service serviceFound es undefined</p>
+    <% } %>
+    
 </section>
 
 <!-- la acción es la URL -->

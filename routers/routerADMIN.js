@@ -19,5 +19,6 @@ router.get('/services/update-service-form/:id', formUpdate);
 router.post('/services/update-service/:id', updateServiceAD);
 
 //delete GET
+router.get('/services/delete-service/:id');
 
 module.exports = router;

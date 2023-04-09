@@ -20,9 +20,9 @@
                 <% if (services.length > 0) { %>
                     <% services.forEach(item => { %>
                         <tr>
-                            <td><%= item.service %></td>
-                            <td><%= item.description %></td>
-                            <td><a class="anchorBtn" href="/admin/services/update-service-form/:id">Update Service</a></td>
+                            <td><%=item.service%></td>
+                            <td><%=item.description%></td>
+                            <td><a class="anchorBtn" href="/admin/services/update-service-form/<%= item._id %>">Update Service</a></td>
                         </tr>
                     <% }) %>
                     <% } else { %>

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const {getIndex, getServices, getProducts, getContacts, getFacilities}=require('../controllers/frontControllers');
+const {getIndex, getServices, getProducts, getContacts, getFacilities, showLoginForm}=require('../controllers/frontControllers');
 
 
 //RUTAS
@@ -19,6 +19,9 @@ router.get('/productos', getProducts);
 
 //Contactos
 router.get('/contactos', getContacts);
+
+//LoginForm - Render
+router.get('/login-form', showLoginForm)
 
 //exportando
 module.exports=router;
