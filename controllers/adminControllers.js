@@ -2,7 +2,8 @@ const Service = require('../models/serviceModel');
 const {petition} = require('../helpers/fetch')
 
 //*Show Services - INDEX ADMIN en donde muestra los servicios, y la posibilidad de editar
-const showServicesAD =async (req,res) => {    
+const showServicesAD =async (req,res) => {  
+      
      try {
     
     const {data} = await petition('services','get');
@@ -43,44 +44,46 @@ const createServiceAD =async (req,res) => {
 
 //*mostrar form de UPDATE
 const formUpdate =async (req,res) =>{
+
     const id = req.params.id
-    console.log(req.params.id, 'admin controller')
-    //const urlUpdate = `services/update-service-form/${id}`
-    const urlUpdate = `services/update-service-form/640e042ff0734576756fda55`
-    
+    const urlUpdate = `services/${id}`
 
-    // const {service,description} = req.body
-    // const body={
-    //     service,
-    //     description
-    // }
-    
-    const serviceFound = await petition(urlUpdate, 'get')
+    try {
+        const respuesta = await petition(urlUpdate, 'get', req.body)
 
-    console.log(serviceFound, 'serviceFound')
+        const serviceFound = respuesta.data
 
+        console.log('esto es serviceFound', serviceFound)
 
-    res.render("./adminViews/updateServiceAD.ejs")
-    return serviceFound
+        res.render("./adminViews/updateServiceAD.ejs", {serviceFound})
+
+    } catch (error) {
+        
+        console.log('FAILED rendering update Form')
+    }
 }
 
 //!update service
 const updateServiceAD =async (req,res) =>{
-    
-    try {
+
         const id = req.params.id
-        console.log(id)
-        const urlUpdate = `/services/${id}`
-
-        const {service,description} = req.body
-        const body={
-            service,
-            description
-        }
+        console.log('esto es el id', id)
+    try {
         
-        const serviceFound = await petition(urlUpdate, 'put', body)
+        const urlUpdate = `services/${id}`
+        console.log(urlUpdate)
 
-        console.log(serviceFound)
+        // const {service,description} = req.body
+        // // const body={
+        // //     service,
+        // //     description
+        // // }
+        
+        const serviceFound = await petition(urlUpdate, 'put', req.body)
+
+        console.log('esto es serviceFound', serviceFound)
+
+        res.redirect('/admin/services/show-services')
 
         return serviceFound
     } catch (error) {
@@ -89,10 +92,29 @@ const updateServiceAD =async (req,res) =>{
 
 }
 
+const deleteServiceAD = async (req,res) => {
+
+        const id = req.params.id
+        console.log(id)
+        
+    try {
+        
+        await petition(`services/${id}`, "delete")
+
+        res.redirect('/admin/services/show-services');
+
+    } catch (error) {
+        
+        console.log('FAILED deleting service')
+
+    }
+}
+
 module.exports={
     showServicesAD,
     createServiceAD,
     formulario,
     formUpdate,
-    updateServiceAD
+    updateServiceAD,
+    deleteServiceAD
 }

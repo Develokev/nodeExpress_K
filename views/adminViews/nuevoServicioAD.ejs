@@ -3,9 +3,11 @@
 <body>
 
     <main>
-        <p class="admWebTitle centerText">SERVICES ADMINISTRATOR</p>
-        <p class="admWebTitle centerText">AUTHORIZED ONLY</p>
-
+        <div>
+            <p class="admWebTitle centerText">SERVICES ADMINISTRATOR</p>
+            <p class="admWebTitle centerText">AUTHORIZED ONLY</p>
+        </div>
+        <%- include('../adminViews/templatesAD/navAD') %>
         <div>
             <a class="anchorBtn" href="/admin/services/form">Create new service</a>
         </div>
@@ -22,7 +24,8 @@
                         <tr>
                             <td><%=item.service%></td>
                             <td><%=item.description%></td>
-                            <td><a class="anchorBtn" href="/admin/services/update-service-form/<%= item._id %>">Update Service</a></td>
+                            <td><a class="anchorBtn" href="/admin/services/update-service-form/<%= item._id %>">Update</a></td>
+                            <td><a class="anchorBtn" href="/admin/services/delete-service/<%= item._id %>">Delete</a></td>
                         </tr>
                     <% }) %>
                     <% } else { %>

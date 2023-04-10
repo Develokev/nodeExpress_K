@@ -12,7 +12,7 @@ router.get('/', getIndex);
 router.get('/servicios', getServices);
 
 //Facilities
-router.get('/facility', getFacilities)
+router.get('/facility', getFacilities);
 
 //Productos
 router.get('/productos', getProducts);

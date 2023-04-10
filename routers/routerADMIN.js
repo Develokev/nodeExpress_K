@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { showServicesAD, createServiceAD, formulario, formUpdate, updateServiceAD } = require('../controllers/adminControllers')
+const { showServicesAD, createServiceAD, formulario, formUpdate, updateServiceAD, deleteServiceAD } = require('../controllers/adminControllers')
 
 //mostrar todos los servicios editables
 router.get('/services/show-services', showServicesAD);
@@ -9,7 +9,7 @@ router.get('/services/show-services', showServicesAD);
 //mostrar url en donde se muestra el FORM
 router.get('/services/form', formulario);
 
-//crear un servicio
+//crear un servicio - GHOST
 router.post('/services/create-service', createServiceAD);
 
 //mostrar form de update
@@ -19,6 +19,6 @@ router.get('/services/update-service-form/:id', formUpdate);
 router.post('/services/update-service/:id', updateServiceAD);
 
 //delete GET
-router.get('/services/delete-service/:id');
+router.get('/services/delete-service/:id', deleteServiceAD);
 
 module.exports = router;

@@ -2,14 +2,16 @@
 const urlBase = 'http://localhost:3000/api/v1'
 
 //Petition
-const petition = async(url,method,body={}) => {
+const petition = async(url, method, body={}) => {
     let options={}
-    console.log(url, method, body)
+    const data={...body};
+    console.log('esto es la URL del fetch', url)
+
     try {
         if(method=='post' || method=='put' || method=='delete'){
-            //const {servicio,descripcion}=body
+            
             console.log('Fetching --> Post or Put methods')
-            const data={...body};
+            
                 options={
                     method:method,
                     body:JSON.stringify(data),
@@ -23,7 +25,6 @@ const petition = async(url,method,body={}) => {
 
           if(respuesta.ok){
             console.log('Fetch done correctly')
-            console.log('respuesta fetch',respuesta.ok)
 
             const resp=await respuesta.json()   
             
@@ -35,8 +36,8 @@ const petition = async(url,method,body={}) => {
     } catch (error) {
         console.log(error)
     }
-    
 }
+
 module.exports = {
     petition
 }
